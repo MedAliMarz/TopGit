@@ -1,0 +1,70 @@
+<nz-page-header class="site-page-header">
+    <!--breadcrumb-->
+    
+
+    <!--avatar-->
+    <nz-avatar nz-page-header-avatar (click)="loadModal(commit.author.login)" nzSize="large" [nzSrc]="commit.author.avatar_url"> </nz-avatar>
+
+    <!--title-->
+    <nz-page-header-title>
+      <a nz-button nzType="primary" target="blank" href="{{commit.html_url}}" >
+
+      {{commit.sha.slice(0,15)}}
+      </a>
+  </nz-page-header-title>
+
+    <!--subtitle-->
+    <nz-page-header-subtitle>Commited by {{commit.author.login}}</nz-page-header-subtitle>
+
+    <!--tags-->
+    <!-- <nz-page-header-tags>
+      <nz-tag [nzColor]="'blue'">Running</nz-tag>
+    </nz-page-header-tags> -->
+
+    <!--extra-->
+    <nz-page-header-extra>
+      <button nz-button ><span nz-typography >{{commit.stats.total}}</span></button>
+      <button nz-button ><span nz-typography nzType="success">(+) {{commit.stats.additions}}</span></button>
+      <button nz-button ><span nz-typography nzType="danger">(-) {{commit.stats.deletions}}</span></button>
+      
+     
+    </nz-page-header-extra>
+
+    <!--content-->
+    <nz-page-header-content>
+      <div nz-row>
+        <div class="content">
+          
+          <p nz-paragraph>
+            {{commit.commit.message}}
+          </p>
+        </div>
+
+      </div>
+      <div nz-row>
+        <div class="content">
+          
+          <p nz-paragraph>
+          </p>
+          <ul nz-list nzBordered nzSize="large">
+            <nz-list-header>           
+              Showing with {{commit.files.length}} changed files with {{commit.stats.additions}} additions and {{commit.stats.deletions}} deletions. 
+            </nz-list-header>
+            <li nz-list-item *ngFor="let item of commit.files" nzNoFlex>
+              
+                <span nz-typography nzType="success" >{{item.additions}}</span>
+                <span nz-typography nzType="danger" >{{item.deletions}}</span>
+
+                {{item.filename}} ({{item.sha.slice(0,15)}})
+             
+  
+            </li>
+            
+          </ul>
+
+      
+        </div>
+
+      </div>
+    </nz-page-header-content>
+  </nz-page-header>

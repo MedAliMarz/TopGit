@@ -1,0 +1,33 @@
+
+  <nz-card style="width: 100%;margin-top: 1rem"  [nzActions]="[followers, following,pubrepo,pubgists]">
+    <nz-skeleton [nzActive]="true" [nzLoading]="false"  [nzAvatar]="{ size: 'large' }">
+      <nz-card-meta [nzAvatar]="avatarTemplate" [nzTitle]="user.name" [nzDescription]="user.bio"></nz-card-meta>
+    </nz-skeleton>
+  </nz-card>
+  <ng-template #avatarTemplate>
+    <nz-avatar [nzSrc]="user.avatar_url"></nz-avatar>
+  </ng-template>
+  <ng-template #followers>
+    <i nz-icon [nzType]="'team'"></i>  
+    <span>{{user.followers}} followers</span>
+
+  </ng-template>
+  <ng-template #following>
+    <i nz-icon [nzType]="'like'"></i>
+    <span>{{user.following}}  following </span>
+
+  </ng-template>
+
+  <ng-template #pubrepo>
+    <i nz-icon [nzType]="'folder-open'"></i> 
+    <span>{{user.public_repos}} repos </span>
+
+  </ng-template>
+  <ng-template #pubgists>
+    <i nz-icon [nzType]="'file-text'"></i> 
+    <span>{{user.public_gists}} gists</span>
+  </ng-template>
+
+
+  
+    

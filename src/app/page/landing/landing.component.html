@@ -1,0 +1,29 @@
+
+<nz-table #basicTable [nzData]="commits">
+    <thead>
+      <tr>
+        <th>Commit</th>
+        <th>Contributor</th>
+        <th>Message</th>
+        <th>Date</th>
+        <th>Parent Hash</th>
+  
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let element of basicTable.data" (click)="getDetailsPage(element.sha)">
+        <td>{{element.sha.slice(0,10)}}</td>
+        <td>    
+          <nz-avatar (click)="$event.preventDefault(); $event.stopPropagation(); loadModal(element.author.login)" nzIcon="user" [nzAlt]="element.author.login" nzSize="large" [nzSrc]="element.author.avatar_url"></nz-avatar>
+          <p>{{element.commit.author.name }}</p> </td>
+        <td>{{element.commit.message.slice(0,150)}}</td>
+        <td>{{element.commit.author.date}}</td>
+        <td>{{element.parents[0].sha.slice(0,7)}}</td>
+      <!--   <td>
+          <a>Action 一 {{commit.name}}</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a>Delete</a>
+        </td> -->
+      </tr>
+    </tbody>
+  </nz-table>
